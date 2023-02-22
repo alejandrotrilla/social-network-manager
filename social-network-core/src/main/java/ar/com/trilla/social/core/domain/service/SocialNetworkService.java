@@ -13,7 +13,11 @@ import ar.com.trilla.social.core.domain.service.response.SingleSocialNetworkResp
 import ar.com.trilla.social.core.domain.service.response.SocialNetworkPageableResponse;
 
 public class SocialNetworkService  {
-    private SocialNetworkGateway socialNetworkGateway;
+    private final SocialNetworkGateway socialNetworkGateway;
+
+    public SocialNetworkService(SocialNetworkGateway socialNetworkGateway) {
+        this.socialNetworkGateway = socialNetworkGateway;
+    }
 
     public SingleSocialNetworkResponse create(SingleSocialNetworkDataRequest request) {
         validateRequest(request, "Invalid Request : %s".formatted(request));
