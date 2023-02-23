@@ -1,0 +1,41 @@
+<h2>Social Networks</h2>
+
+<div class="button-bar">
+  <button type="button" (click)="onNewItem()">+</button>
+</div>
+
+<div class="navigation-bar">
+  <button type="button" (click)="onFirstPage()"><<</button>
+  <button type="button" (click)="onPreviousPage()"><</button>
+  <span>{{ pageIndex + 1 }} of {{ lastPageIndex + 1 }}</span>
+  <button type="button" (click)="onNextPage()">></button>
+  <button type="button" (click)="onLastPage()">>></button>
+
+  <label for="pageSize">Page Size:</label>
+
+  <select id="pageSize" [(ngModel)]="pageSize" (change)="onChangePageSize()" type="number">
+    <option [ngValue]="5">5</option>
+    <option [ngValue]="10">10</option>
+    <option [ngValue]="15">15</option>
+  </select>
+
+  <button type="button" (click)="onRefresh()">Refresh</button>
+</div>
+
+<ul class="social-network-list">
+  <li *ngFor="let socialNetwork of socialNetworkItems">
+    <button type="button" (click)="onSelect(socialNetwork)">
+      <span class="badge">{{socialNetwork.id}}</span>
+      <span class="name">{{socialNetwork.name}}</span>
+      <span class="description">{{socialNetwork.description}}</span>
+    </button>
+    <button type="button" (click)="onDelete(socialNetwork)">-</button>
+  </li>
+</ul>
+
+<div *ngIf="selectedSocialNetwork" class="social-network-detail">
+  <app-social-network
+    [socialNetwork]="selectedSocialNetwork"
+    (newSocialNetworkEvent)="onSave($event)">
+  </app-social-network>
+</div>

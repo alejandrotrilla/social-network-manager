@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/social-networks")
-public class NetworksController {
+public class SocialNetworkController {
     @Autowired
     private SocialNetworkService socialNetworkService;
 

@@ -11,6 +11,7 @@
     <modules>
         <module>social-network-core</module>
         <module>social-network-spring-configuration</module>
+        <module>social-network-frontend</module>
     </modules>
 
     <properties>
