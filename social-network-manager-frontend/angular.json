@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "social-network-frontend": {
+    "social-network-manager-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/social-network-frontend",
+            "outputPath": "dist/social-network-manager-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "social-network-frontend:build:production"
+              "browserTarget": "social-network-manager-frontend:build:production"
             },
             "development": {
-              "browserTarget": "social-network-frontend:build:development",
+              "browserTarget": "social-network-manager-frontend:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "social-network-frontend:build"
+            "browserTarget": "social-network-manager-frontend:build"
           }
         },
         "test": {

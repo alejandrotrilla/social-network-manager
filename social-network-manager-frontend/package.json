@@ -1,5 +1,5 @@
 {
-  "name": "social-network-frontend",
+  "name": "social-network-manager-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

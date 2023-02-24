@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>social-network-core</module>
-        <module>social-network-spring-configuration</module>
-        <module>social-network-frontend</module>
+        <module>social-network-manager-backend</module>
+        <module>social-network-manager-frontend</module>
     </modules>
 
     <properties>

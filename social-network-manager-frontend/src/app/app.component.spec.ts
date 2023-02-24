@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'social-network-frontend'`, () => {
+  it(`should have as title 'social-network-manager-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('social-network-frontend');
+    expect(app.title).toEqual('social-network-manager-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('social-network-frontend app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('social-network-manager-frontend app is running!');
   });
 });

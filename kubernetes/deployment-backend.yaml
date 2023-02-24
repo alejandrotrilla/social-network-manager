@@ -1,33 +1,28 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: social-network
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
-    app.kubernetes.io/name: social-network-spring-configuration
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/name: social-network-manager-backend
   name: social-network-manager-backend
   namespace: social-network
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/version: 1.0.0-SNAPSHOT
-      app.kubernetes.io/name: social-network-spring-configuration
+      app.kubernetes.io/version: latest
+      app.kubernetes.io/name: social-network-manager-backend
   template:
     metadata:
       annotations:
       labels:
-        app.kubernetes.io/version: 1.0.0-SNAPSHOT
-        app.kubernetes.io/name: social-network-spring-configuration
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/name: social-network-manager-backend
       namespace: social-network
     spec:
       containers:
         - name: social-network-manager-backend
-          image: alejandrotrilla/social-network-spring-configuration:1.0.0-SNAPSHOT
+          image: alejandrotrilla/social-network-manager-backend:latest
 ---
 apiVersion: v1
 kind: Service
@@ -36,8 +31,8 @@ metadata:
   namespace: social-network
 spec:
   selector:
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
-    app.kubernetes.io/name: social-network-spring-configuration
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/name: social-network-manager-backend
   ports:
     - protocol: TCP
       port: 8080
@@ -51,7 +46,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/cors-allow-headers: Content-Type
     nginx.ingress.kubernetes.io/cors-allow-methods: POST, GET, DELETE, PUT
-    nginx.ingress.kubernetes.io/cors-allow-origin: 'http://social-network-frontend'
+    nginx.ingress.kubernetes.io/cors-allow-origin: 'http://social-network-manager-frontend'
     nginx.ingress.kubernetes.io/cors-expose-headers: X-Custom-Header
     nginx.ingress.kubernetes.io/cors-max-age: "86400"
     nginx.ingress.kubernetes.io/enable-cors: "true"
