@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { SocialNetwork, SocialNetworkPage, EMPTY_SOCIAL_NETWORK_PAGE, SOCIAL_NETWORKS } from './social-networks';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialNetworkService {
-  private apiUrl = '/api/social-networks';
+  private apiUrl = environment.apiUrl + '/social-networks';
 
   constructor(  private http: HttpClient) {
   }

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: social-network-frontend
+  name: social-network-frontend
+  namespace: social-network
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: social-network-frontend
+  template:
+    metadata:
+      annotations:
+      labels:
+        app.kubernetes.io/name: social-network-frontend
+      namespace: social-network
+    spec:
+      containers:
+        - name: social-network-frontend
+          image: alejandrotrilla/social-network-frontend:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-network-frontend
+  namespace: social-network
+spec:
+  selector:
+    app.kubernetes.io/name: social-network-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: social-network-frontend-ingress
+  namespace: social-network
+spec:
+  rules:
+    - host: social-network-frontend
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: social-network-frontend
+                port:
+                  number: 80
