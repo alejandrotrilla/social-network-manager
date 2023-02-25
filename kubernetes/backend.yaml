@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/version: 1.0.3-SNAPSHOT
+    app.kubernetes.io/version: 1.0.6-SNAPSHOT
     app.kubernetes.io/name: social-network-manager-backend
   name: social-network-manager-backend
   namespace: social-network
@@ -10,19 +10,19 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/version: 1.0.3-SNAPSHOT
+      app.kubernetes.io/version: 1.0.6-SNAPSHOT
       app.kubernetes.io/name: social-network-manager-backend
   template:
     metadata:
       annotations:
       labels:
-        app.kubernetes.io/version: 1.0.3-SNAPSHOT
+        app.kubernetes.io/version: 1.0.6-SNAPSHOT
         app.kubernetes.io/name: social-network-manager-backend
       namespace: social-network
     spec:
       containers:
         - name: social-network-manager-backend
-          image: alejandrotrilla/social-network-manager-backend:1.0.3-SNAPSHOT
+          image: alejandrotrilla/social-network-manager-backend:1.0.6-SNAPSHOT
           imagePullPolicy: "Always"
 ---
 apiVersion: v1
@@ -32,7 +32,7 @@ metadata:
   namespace: social-network
 spec:
   selector:
-    app.kubernetes.io/version: 1.0.3-SNAPSHOT
+    app.kubernetes.io/version: 1.0.6-SNAPSHOT
     app.kubernetes.io/name: social-network-manager-backend
   ports:
     - protocol: TCP
