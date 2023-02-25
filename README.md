@@ -5,14 +5,17 @@ Social Network Manager is an application for managing social networks content an
 docker login -u alejandrotrilla
 
 mvn clean install
-mvn -pl social-network-manager-backend spring-boot:build-image -Dspring-boot.build-image.imageName=alejandrotrilla/social-network-manager-backend
-docker push alejandrotrilla/social-network-manager-backend:latest
+mvn -pl social-network-manager-backend spring-boot:build-image -Dspring-boot.build-image.imageName=alejandrotrilla/social-network-manager-backend:1.0.3-SNAPSHOT
+docker push alejandrotrilla/social-network-manager-backend:1.0.3-SNAPSHOT
 
 cd social-network-manager-frontend
-ng build
-docker build -t alejandrotrilla/social-network-manager-frontend .
-docker push alejandrotrilla/social-network-manager-frontend:latest
+ng build --base-href /social-network-manager-frontend/
+docker build -t alejandrotrilla/social-network-manager-frontend:1.0.3-SNAPSHOT .
+docker push alejandrotrilla/social-network-manager-frontend:1.0.3-SNAPSHOT
+
+cd ..
 
 kubectl apply -f kubernetes/deployment-namespace.yaml
 kubectl apply -f kubernetes/deployment-backend.yaml
 kubectl apply -f kubernetes/deployment-frontend.yaml
+kubectl apply -f kubernetes/deployment-ingress.yaml

@@ -6,7 +6,7 @@
     <parent>
         <groupId>ar.com.trilla.social</groupId>
         <artifactId>social-network-manager</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>social-network-core</artifactId>
