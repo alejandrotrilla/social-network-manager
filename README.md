@@ -24,11 +24,24 @@ cd ..
 # Delete deployments: backend & frontend
 # kubectl delete -f kubernetes/backend.yaml
 # kubectl delete -f kubernetes/frontend.yaml
+# kubectl delete -f kubernetes/keycloak.yaml
 
 kubectl apply -f kubernetes/namespace.yaml
+kubectl apply -f kubernetes/keycloak.yaml
 kubectl apply -f kubernetes/backend.yaml
 kubectl apply -f kubernetes/frontend.yaml
 kubectl apply -f kubernetes/ingress.yaml
 kubectl apply -f kubernetes/letsencrypt-cluster-issuer.yaml
 
 
+
+
+
+docker run -p 80:8080 \
+-e KEYCLOAK_ADMIN=admin \
+-e KEYCLOAK_ADMIN_PASSWORD=admin \
+-e KC_HOSTNAME=alejandrotrilla.com.ar \
+-e KC_HTTP_RELATIVE_PATH=/auth \
+-e JAVA_OPTS_APPEND="-Dquarkus.http.root-path=/auth" \
+quay.io/keycloak/keycloak:21.0.0 \
+start-dev
