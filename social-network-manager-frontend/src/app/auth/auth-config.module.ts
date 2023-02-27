@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { AuthModule } from 'angular-auth-oidc-client';
 
+import { environment } from '../environments/environment';
+
 @NgModule({
     imports: [AuthModule.forRoot({
         config: {
-            authority: window.location.origin + '/auth/realms/social-network',
-            redirectUrl: window.location.origin + '/social-network-manager-frontend',
-            postLoginRoute: window.location.origin + '/social-network-manager-frontend',
-            postLogoutRedirectUri: window.location.origin + '/social-network-manager-frontend',
-            triggerAuthorizationResultEvent: true,
-            clientId: 'social-network-manager-frontend',
-            startCheckSession: false,
-            scope: 'openid profile',
-            responseType: 'code',
-            silentRenew: true,
-            silentRenewUrl: window.location.origin + '/assets/silent-renew.html',
-            ignoreNonceAfterRefresh: true,
-            useRefreshToken: true,
-            tokenRefreshInSeconds: 10,
-            forbiddenRoute: '/forbidden/',
-            unauthorizedRoute: '/unauthorized/',
-            historyCleanupOff: true,
-            secureRoutes: [
-              '/api',
-            ]
-            }
+          authority: environment.APP_BASE_URI,
+          redirectUrl: environment.APP_BASE_URI,
+          postLoginRoute: environment.APP_BASE_URI,
+          postLogoutRedirectUri: environment.APP_BASE_URI,
+          triggerAuthorizationResultEvent: true,
+          clientId: environment.CLIENT_ID,
+          startCheckSession: false,
+          scope: environment.CLIENT_SCOPES,
+          responseType: 'code',
+          silentRenew: true,
+          silentRenewUrl: environment.APP_SILENT_RENEW_URI,
+          ignoreNonceAfterRefresh: true,
+          useRefreshToken: true,
+          tokenRefreshInSeconds: 10,
+          forbiddenRoute: environment.FORBIDDEN_ROUTE,
+          unauthorizedRoute: environment.UNAUTHORIZED_ROUTE,
+          historyCleanupOff: true,
+          secureRoutes: environment.APP_SECURE_ROUTES
+        }
       })],
     exports: [AuthModule],
 })
