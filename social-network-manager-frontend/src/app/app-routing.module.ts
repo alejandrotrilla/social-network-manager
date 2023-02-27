@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SocialNetworkListComponent } from './social-network-list/social-network-list.component';
 
+import { SecurityGuard } from './security.guard';
+
 const routes: Routes = [
-  { path: 'social-network-list', component: SocialNetworkListComponent }
+  { path: 'social-network-list', component: SocialNetworkListComponent, canActivate: [SecurityGuard] }
 ];
 
 
