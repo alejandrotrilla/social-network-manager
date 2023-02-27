@@ -12,8 +12,6 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   ingressClassName: nginx
@@ -25,17 +23,24 @@ spec:
     - host: alejandrotrilla.com.ar
       http:
         paths:
-          - path: /social-network-manager-backend(/|$)(.*)
+          - path: /social-network-manager-backend
             pathType: Prefix
             backend:
               service:
                 name: social-network-manager-backend
                 port:
                   number: 8080
-          - path: /social-network-manager-frontend(/|$)(.*)
+          - path: /social-network-manager-frontend
             pathType: Prefix
             backend:
               service:
                 name: social-network-manager-frontend
                 port:
                   number: 80
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  number: 8080

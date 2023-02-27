@@ -29,6 +29,12 @@ spec:
               value: "edge"
             - name: KC_HTTP_ENABLED
               value: "true"
+            - name: KC_HOSTNAME
+              value: "alejandrotrilla.com.ar"
+            - name: KC_HTTP_RELATIVE_PATH
+              value: "/auth"
+            - name: JAVA_OPTS_APPEND
+              value: "-Dquarkus.http.root-path=/auth"
           ports:
             - name: http
               containerPort: 8080
@@ -47,36 +53,3 @@ spec:
       targetPort: 8080
   selector:
     app: keycloak
----
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: keycloak-ingress
-  namespace: social-network
-  annotations:
-    nginx.ingress.kubernetes.io/cors-allow-headers: Content-Type
-    nginx.ingress.kubernetes.io/cors-allow-methods: POST, GET, DELETE, PUT
-    nginx.ingress.kubernetes.io/cors-allow-origin: '*'
-    nginx.ingress.kubernetes.io/cors-expose-headers: X-Custom-Header
-    nginx.ingress.kubernetes.io/cors-max-age: "86400"
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: letsencrypt-staging
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - trilla.com.ar
-      secretName: trilla-cert
-  rules:
-    - host: trilla.com.ar
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080

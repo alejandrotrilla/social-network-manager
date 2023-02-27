@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SocialNetworkComponent } from './social-network/social-network.component';
 import { SocialNetworkListComponent } from './social-network-list/social-network-list.component';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SocialNetworkListComponent } from './social-network-list/social-network
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthConfigModule
   ],
   providers: [],
   bootstrap: [AppComponent]

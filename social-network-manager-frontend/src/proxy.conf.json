@@ -2,8 +2,36 @@
   "/api": {
     "target": "http://localhost:8080/",
     "secure": false,
+    "changeOrigin": false,
     "pathRewrite": {
       "^/api": ""
+    },
+    "logLevel": "debug"
+  },
+  "/auth": {
+    "target": "http://localhost:8081/auth",
+    "changeOrigin": false,
+    "secure": false,
+    "pathRewrite": {
+      "^/auth": ""
+    },
+    "logLevel": "debug"
+  },
+  "/admin": {
+    "target": "http://localhost:8081/auth",
+    "changeOrigin": false,
+    "secure": false,
+    "pathRewrite": {
+      "^/admin": ""
+    },
+    "logLevel": "debug"
+  },
+  "/resources": {
+    "target": "http://localhost:8081/auth",
+    "changeOrigin": false,
+    "secure": false,
+    "pathRewrite": {
+      "^/resources": ""
     },
     "logLevel": "debug"
   }
