@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+
 import { SocialNetwork, SocialNetworkPage, EMPTY_SOCIAL_NETWORK_PAGE } from '../social-networks';
 import { SocialNetworkService } from '../social-network.service';
 
@@ -8,6 +11,7 @@ import { SocialNetworkService } from '../social-network.service';
   styleUrls: ['./social-network-list.component.css']
 })
 export class SocialNetworkListComponent {
+  private accessToken : string = '';
   selectedSocialNetwork?: SocialNetwork;
 
   socialNetworkItems : SocialNetwork[] = [];
@@ -15,28 +19,34 @@ export class SocialNetworkListComponent {
   pageIndex : number = 0;
   pageSize : number = 10;
   lastPageIndex : number = 0;
-
   editing : boolean = false;
 
-  constructor(private socialNetworkService : SocialNetworkService) {
+  constructor(
+    private socialNetworkService : SocialNetworkService,
+    private oidcSecurityService: OidcSecurityService
+    ) {
   }
 
   ngOnInit(): void {
-    this.getSocialNetworks();
+    this.oidcSecurityService.checkAuth().subscribe(({ accessToken }) => {
+      this.accessToken = accessToken;
+      this.getSocialNetworks(accessToken);
+    });
   }
+
 
   onSelect(socialNetwork: SocialNetwork): void {
     this.selectedSocialNetwork = socialNetwork;
   }
 
   onRefresh() : void {
-    this.getSocialNetworks();
+    this.getSocialNetworks(this.accessToken);
     this.selectedSocialNetwork = undefined;
     this.editing = false;
   }
 
-  getSocialNetworks() : void {
-    this.socialNetworkService.getSocialNetworks(this.pageIndex, this.pageSize)
+  getSocialNetworks(accessToken : string) : void {
+    this.socialNetworkService.getSocialNetworks(this.pageIndex, this.pageSize, accessToken)
       .subscribe(socialNetworks => {
         this.socialNetworkItems = socialNetworks.items;
         this.socialNetworkCount = socialNetworks.totalItems;
@@ -87,12 +97,12 @@ export class SocialNetworkListComponent {
   }
 
   createSocialNetwork(socialNetwork : SocialNetwork) {
-    this.socialNetworkService.createSocialNetwork(socialNetwork)
+    this.socialNetworkService.createSocialNetwork(socialNetwork, this.accessToken)
       .subscribe(response => this.onRefresh());
   }
 
   onDelete(socialNetwork : SocialNetwork) {
-    this.socialNetworkService.deleteSocialNetwork(socialNetwork.id || '')
+    this.socialNetworkService.deleteSocialNetwork(socialNetwork.id || '', this.accessToken)
       .subscribe(response => this.onRefresh());
   }
 

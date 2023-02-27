@@ -1,6 +1,11 @@
-<button type="button" (click)="onLogin()">Login</button>
-<button type="button" (click)="onLogout()">Logout</button>
+<div *ngIf="isAuthenticated; else noAuth">
+  <button (click)="onLogout()">Logout</button>
+</div>
 
+<ng-template #noAuth>
+  <button (click)="onLogin()">Login</button>
+  <hr />
+</ng-template>
 
 <nav>
   <a routerLink="/social-network-list">Social Networks</a>
