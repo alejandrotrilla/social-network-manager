@@ -20,7 +20,7 @@ export const APP_SECURE_ROUTES = [
 
 export const environment = {
   production: false,
-  apiUrl: '/api/social-network-manager-backend',
+  apiUrl: '/social-network-manager-backend',
   authConfig: {
     authority: AUTH_BASE_URI,
     redirectUrl: APP_BASE_URI,
