@@ -2,32 +2,29 @@
 Social Network Manager is an application for managing social networks content and events.
 
 # Build & Deploy:
+```
 docker login -u alejandrotrilla
+. scripts/build-social-network-manager-backend.sh 1.0.0-SNAPSHOT
+. scripts/build-social-network-manager-frontend.sh 1.0.0-SNAPSHOT
+. scripts/deploy-all-to-kubernetes.sh 1.0.0-SNAPSHOT
+```
 
-mvn clean install
-mvn -pl social-network-manager-backend spring-boot:build-image -Dspring-boot.build-image.imageName=alejandrotrilla/social-network-manager-backend:1.0.0-SNAPSHOT
-docker push alejandrotrilla/social-network-manager-backend:1.0.0-SNAPSHOT
-# Local Docker execution
-# docker run -p 80:80 alejandrotrilla/social-network-manager-backend:1.0.0-SNAPSHOT
+# For undeploy from kubernetes
+```
+. scripts/delete-all-from-kubernetes.sh 1.0.0-SNAPSHOT
+```
 
-cd social-network-manager-frontend
-rm -rf dist/social-network-manager-frontend
-ng build --base-href /social-network-manager-frontend/ --output-hashing=all
-docker build -t alejandrotrilla/social-network-manager-frontend:1.0.0-SNAPSHOT .
-docker push alejandrotrilla/social-network-manager-frontend:1.0.0-SNAPSHOT
-cd ..
+# For Local execution & testing
+```
+. scripts/run-docker-keycloak.sh
+. scripts/run-docker-social-network-manager-backend.sh 1.0.0-SNAPSHOT
+. scripts/run-docker-social-network-manager-frontend.sh 1.0.0-SNAPSHOT
+```
 
-# Local Docker execution
-# docker run -p 80:80 alejandrotrilla/social-network-manager-frontend:1.0.0-SNAPSHOT
-
-# Delete deployments: backend & frontend
-# kubectl delete -f kubernetes/backend.yaml
-# kubectl delete -f kubernetes/frontend.yaml
-# kubectl delete -f kubernetes/keycloak.yaml
-
-kubectl apply -f kubernetes/letsencrypt-cluster-issuer.yaml
-kubectl apply -f kubernetes/namespace.yaml
-kubectl apply -f kubernetes/keycloak.yaml
-kubectl apply -f kubernetes/backend.yaml
-kubectl apply -f kubernetes/frontend.yaml
-kubectl apply -f kubernetes/ingress.yaml
+# For upgrade a version in the cloud
+```
+. scripts/build-social-network-manager-backend.sh 1.0.1-SNAPSHOT
+. scripts/upgrade-social-network-manager-backend-and-deploy-to-kubernetes.sh 1.0.0-SNAPSHOT 1.0.1-SNAPSHOT 
+. scripts/build-social-network-manager-frontend.sh 1.0.1-SNAPSHOT
+. scripts/upgrade-social-network-manager-frontend-and-deploy-to-kubernetes.sh 1.0.0-SNAPSHOT 1.0.1-SNAPSHOT 
+```

@@ -1,4 +1,4 @@
-docker run --name keycloak -p 8081:8080 \
+docker run --name keycloak -p 8082:8080 \
 -e KEYCLOAK_ADMIN=admin \
 -e KEYCLOAK_ADMIN_PASSWORD=admin \
 -e KC_HOSTNAME=localhost \
