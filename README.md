@@ -16,9 +16,9 @@ docker login -u alejandrotrilla
 
 # For Local execution & testing
 ```
-. scripts/run-docker-keycloak.sh
-. scripts/run-docker-social-network-manager-backend.sh 1.0.0-SNAPSHOT
-. scripts/run-docker-social-network-manager-frontend.sh 1.0.0-SNAPSHOT
+. scripts/local-docker/run-docker-keycloak.sh
+. scripts/local-docker/run-docker-social-network-manager-backend.sh 1.0.0-SNAPSHOT
+. scripts/local-docker/run-docker-social-network-manager-frontend.sh 1.0.0-SNAPSHOT
 ```
 
 # For upgrade a version in the cloud
