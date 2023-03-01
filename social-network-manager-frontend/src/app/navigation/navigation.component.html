@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="onHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span class="toolbar-spacer"></span>
+
+  <span>{{ name }}</span>
+
+  <span class="toolbar-spacer"></span>
+
+  <div>
+    <button mat-icon-button
+            [matMenuTriggerFor]="userMenu"
+            class="menu"
+            title="{{username}}">
+      <mat-icon>manage_accounts</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item
+              (click)="onProfile()"
+              *ngIf="isAuthenticated">
+        Profile
+      </button>
+      <button mat-menu-item
+              (click)="onLogout()"
+              *ngIf="isAuthenticated">
+        <mat-icon>logout</mat-icon>
+      </button>
+      <button mat-menu-item
+              (click)="onLogin()"
+              *ngIf="!isAuthenticated">
+        <mat-icon>login</mat-icon>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

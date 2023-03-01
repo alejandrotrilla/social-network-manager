@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-
-import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult, AuthenticatedResult } from 'angular-auth-oidc-client';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult, AuthenticatedResult } from 'angular-auth-oidc-client';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css']
 })
-export class AppComponent implements OnInit {
+export class NavigationComponent {
+  name : string = "Social Network Manager"
+  username : string = '';
   configuration$: Observable<OpenIdConfiguration> = EMPTY;
   userDataChanged$: Observable<OidcClientNotification<any>> = EMPTY;
   userData$: Observable<UserDataResult> = EMPTY;
   isAuthenticated = false;
   isAuthenticated$ : Observable<AuthenticatedResult>= EMPTY;
 
-  constructor(public oidcSecurityService: OidcSecurityService) {
-  }
+  constructor(
+      private router: Router,
+      private route: ActivatedRoute,
+      private oidcSecurityService: OidcSecurityService,
+    ) {
+    }
 
   ngOnInit() {
     this.configuration$ = this.oidcSecurityService.getConfiguration();
@@ -35,5 +41,13 @@ export class AppComponent implements OnInit {
 
     onLogout() {
       this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+    }
+
+    onHome() {
+      this.router.navigate(['home/']);
+    }
+
+    onProfile() {
+      this.router.navigate(['profile/']);
     }
 }

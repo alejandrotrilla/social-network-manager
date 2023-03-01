@@ -1,1 +1,359 @@
-/* You can add global styles to this file, and also import other style files */
+html  {
+  height: 100%;
+  background-color: #262626;
+  color: #fff;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0vw 5vw 0vw 5vw;
+  padding: 0;
+}
+
+.main {
+  color: #ffffff;
+  background-color: #313131;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  width: 100vw;
+  height: 95vh;
+  float: left;
+  margin: 0;
+  padding: 0;
+  scrollbar-color: gray #313131;
+  scrollbar-width: thin;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  border: 1px solid #202020;
+  background-color: #404040;
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 20px 0px 20px 0px;
+  padding: 20px 0px 20px 0px;
+  border: 1px dotted gray;
+}
+
+.field-group-title {
+  font-size: 1.5rem;
+  padding-left: 1%;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+}
+
+label {
+  color: #c0ffd0;
+}
+
+.details {
+  font-style: italic;
+  color: #9090f0;
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+}
+
+.details div {
+  margin: 1rem 0rem 1rem 0rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.body img {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: 75vw;
+   max-height: 50vh;
+}
+
+.question {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+}
+
+.questionText {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 0rem 0rem 1rem 0rem;
+  color: #ffffff;
+}
+
+.question .option {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 0rem 0rem 1rem 0rem;
+}
+
+.code {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 0rem 0rem 2rem 0rem;
+  padding: 1rem 0rem 0rem 0rem;
+  border: 1px dotted gray;
+  background-color: #202020;
+  color: #c0f0f0;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+  font-size: 0.7rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.mat-expansion-panel {
+  background-color: #414141;
+  width: 100%;
+  color: white;
+}
+
+.mat-expansion-panel-header-title {
+  color: #c0f0c0;
+}
+
+.mat-expansion-panel-header-description {
+  color: #c0f0f0;
+}
+
+.evaluation {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 1rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+  font-size: 0.7rem;
+}
+
+.stepEvaluation {
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 1rem 0rem 0rem 0rem;
+  padding: 1rem;
+  border: 1px dotted gray;
+  font-size: 0.7rem;
+}
+
+.CORRECT {
+  color: green;
+}
+
+.NOT_ANSWERED {
+  color: yellow;
+}
+
+.INCORRECT {
+  color: red;
+}
+
+.button-panel {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 1rem;
+  text-align: center;
+}
+
+.button-panel button + button {
+  margin-left: 10px;
+}
+
+.mini-button-panel {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.mini-button-panel button {
+  width: 20px;
+}
+
+.mini-button-panel button + button {
+  margin-left: 5px;
+}
+
+.table-actions {
+  text-align: left;
+  position: relative;
+  float: left;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.table-actions button {
+  width: 20px;
+}
+
+.table-actions button + button {
+  margin-left: 5px;
+}
+
+.registration {
+  padding: 1rem;
+}
+
+.mat-form-field {
+  color: #a0a0ff;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+mat-label {
+  color: #d0d0d0;
+}
+
+.full-width-field {
+   width: 98%;
+   padding-left: 1%;
+   padding-right: 1%;
+}
+
+.crash {
+  color: #a0a0a0;
+  font-size: 1rem;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.crash .title {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.crash p {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  color: #c0c0c0;
+}
+
+.mat-table, .mat-paginator-container {
+  background-color: #404040;
+  color: #b0b0ff;
+}
+
+.mat-cell, .mat-select-value {
+  color: #b0b0ff;
+}
+
+.mat-header-cell {
+  color: #c0c0ff;
+  font-size: 1.5rem;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width:auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-dialog-container {
+  background-color: #a47676;
+}
+
+.mat-dialog-container .button-panel {
+  width: 90%;
+}
+
+.mat-dialog-title {
+  color: white;
+  text-align: center;
+  font-width: bold;
+}
+
+.mat-snack-bar-container {
+  background-color: #b0b0ff;
+  color: black
+}
+
+.menu-bar {
+  background-color: #505050;
+  width: 30vw;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.entity-data-panel {
+  float: left;
+  width: 40vw;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.entity-preview-panel {
+  float: right;
+  width: 49vw;
+  background-color: #303030;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.main-menu-item {
+  font-size:.7rem;
+  text-align:left;
+  background-color:#404040;
+  position:relative;
+  width:50%;
+  left:auto;
+  float:left;
+  padding:1rem;
+  border:1px dotted grey;
+  margin:1rem 1rem 1rem 25%;
+}
+
+.profile-item {
+  padding: 0.5rem;
+}
+
+form {
+  background-color:#282828;
+}
+
+mat-form-field {
+  width: 100%;
+}

@@ -1,15 +1,56 @@
 <h2>Social Networks</h2>
 
 <div class="button-bar">
-  <button type="button" (click)="onNewItem()">+</button>
+  <button mat-icon-button (click)="onNewItem()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
+<table mat-table [dataSource]="socialNetworkItems" class="mat-elevation-z8" [ngStyle]="{ 'background-color': 'gray'}">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID</th>
+    <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description</th>
+    <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="onDelete(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
 <div class="navigation-bar">
-  <button type="button" (click)="onFirstPage()"><<</button>
-  <button type="button" (click)="onPreviousPage()"><</button>
+  <button mat-icon-button (click)="onFirstPage()">
+    <mat-icon>first_page</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onPreviousPage()">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
   <span>{{ pageIndex + 1 }} of {{ lastPageIndex + 1 }}</span>
-  <button type="button" (click)="onNextPage()">></button>
-  <button type="button" (click)="onLastPage()">>></button>
+  <button mat-icon-button (click)="onNextPage()">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+  <button mat-icon-button (click)="onLastPage()">
+    <mat-icon>last_page</mat-icon>
+  </button>
 
   <label for="pageSize">Page Size:</label>
 
@@ -19,19 +60,10 @@
     <option [ngValue]="15">15</option>
   </select>
 
-  <button type="button" (click)="onRefresh()">Refresh</button>
+  <button mat-icon-button (click)="onRefresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
 </div>
-
-<ul class="social-network-list">
-  <li *ngFor="let socialNetwork of socialNetworkItems">
-    <button type="button" (click)="onSelect(socialNetwork)">
-      <span class="badge">{{socialNetwork.id}}</span>
-      <span class="name">{{socialNetwork.name}}</span>
-      <span class="description">{{socialNetwork.description}}</span>
-    </button>
-    <button type="button" (click)="onDelete(socialNetwork)">-</button>
-  </li>
-</ul>
 
 <div *ngIf="selectedSocialNetwork" class="social-network-detail">
   <app-social-network

@@ -9,7 +9,7 @@
     "logLevel": "debug"
   },
   "/auth": {
-    "target": "http://localhost:8081/auth",
+    "target": "http://localhost:8082/auth",
     "changeOrigin": false,
     "secure": false,
     "pathRewrite": {
@@ -18,7 +18,7 @@
     "logLevel": "debug"
   },
   "/admin": {
-    "target": "http://localhost:8081/auth",
+    "target": "http://localhost:8082/auth",
     "changeOrigin": false,
     "secure": false,
     "pathRewrite": {
@@ -27,7 +27,7 @@
     "logLevel": "debug"
   },
   "/resources": {
-    "target": "http://localhost:8081/auth",
+    "target": "http://localhost:8082/auth",
     "changeOrigin": false,
     "secure": false,
     "pathRewrite": {

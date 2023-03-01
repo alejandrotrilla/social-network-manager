@@ -1,24 +1,30 @@
 <div *ngIf="socialNetwork">
   <h2> Social Network </h2>
 
-  <div>
-    <label for="socialNetworkId">ID: </label>
-    <input id="socialNetworkId" value="{{socialNetwork.id}}" readonly>
-  </div>
+  <form class="form">
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput value="{{socialNetwork.id}}" name="id" [readonly]="true" [disabled]="true">
+    </mat-form-field>
 
-  <div>
-    <label for="name">Name: </label>
-    <input id="name" [(ngModel)]="socialNetwork.name" placeholder="name">
-  </div>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="socialNetwork.name" name="name">
+    </mat-form-field>
 
-  <div>
-    <label for="name">Description: </label>
-    <input id="description" [(ngModel)]="socialNetwork.description" placeholder="description">
-  </div>
+    <mat-form-field >
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="socialNetwork.description" name="description"></textarea>
+    </mat-form-field>
+  </form>
 
   <div class="button-panel">
-    <button type="button" (click)="onSave(socialNetwork)">Save</button>
-    <button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-icon-button (click)="onSave(socialNetwork)">
+      <mat-icon>check</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+    </button>
   </div>
 
 </div>

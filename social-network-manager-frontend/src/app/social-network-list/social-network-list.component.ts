@@ -21,6 +21,8 @@ export class SocialNetworkListComponent {
   lastPageIndex : number = 0;
   editing : boolean = false;
 
+  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+
   constructor(
     private socialNetworkService : SocialNetworkService,
     private oidcSecurityService: OidcSecurityService
