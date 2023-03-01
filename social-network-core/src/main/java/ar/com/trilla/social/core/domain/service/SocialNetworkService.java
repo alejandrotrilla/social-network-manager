@@ -13,6 +13,8 @@ import ar.com.trilla.social.core.domain.service.response.SingleSocialNetworkResp
 import ar.com.trilla.social.core.domain.service.response.SocialNetworkPageableResponse;
 
 public class SocialNetworkService  {
+    private static final String INVALID_REQUEST_MESSAGE = "Invalid Request : %s";
+
     private final SocialNetworkGateway socialNetworkGateway;
 
     public SocialNetworkService(SocialNetworkGateway socialNetworkGateway) {
@@ -20,14 +22,14 @@ public class SocialNetworkService  {
     }
 
     public SingleSocialNetworkResponse create(SingleSocialNetworkDataRequest request) {
-        validateRequest(request, "Invalid Request : %s".formatted(request));
+        validateRequest(request, INVALID_REQUEST_MESSAGE.formatted(request));
         SocialNetwork socialNetwork = new SocialNetwork(request.data());
         socialNetworkGateway.save(socialNetwork);
         return new SingleSocialNetworkResponse(socialNetwork);
     }
 
     public SingleSocialNetworkResponse delete(SingleSocialNetworkIdRequest request) {
-        validateRequest(request, "Invalid Request : %s".formatted(request));
+        validateRequest(request, INVALID_REQUEST_MESSAGE.formatted(request));
         SocialNetwork socialNetwork = socialNetworkGateway.findById(request.id());
         checkExistence(socialNetwork, "Social Network with id=%s not found in repository".formatted(request.id()));
         socialNetworkGateway.deleteById(request.id());
@@ -35,7 +37,7 @@ public class SocialNetworkService  {
     }
 
     public SocialNetworkPageableResponse findAllByPage(SocialNetworkPageableRequest request) {
-        validateRequest(request, "Invalid Request : %s".formatted(request));
+        validateRequest(request, INVALID_REQUEST_MESSAGE.formatted(request));
         Page<SocialNetwork> socialNetworkPage = socialNetworkGateway.findAllByPage(request);
         return new SocialNetworkPageableResponse(socialNetworkPage);
     }

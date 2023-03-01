@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
-import { SocialNetwork, SocialNetworkPage, EMPTY_SOCIAL_NETWORK_PAGE } from '../social-networks';
+import { SocialNetwork } from '../social-networks';
 import { SocialNetworkService } from '../social-network.service';
 
 @Component({

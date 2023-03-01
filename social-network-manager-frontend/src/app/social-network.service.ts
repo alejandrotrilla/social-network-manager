@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
-import { SocialNetwork, SocialNetworkPage, EMPTY_SOCIAL_NETWORK_PAGE, SOCIAL_NETWORKS } from './social-networks';
+import { SocialNetwork, SocialNetworkPage, EMPTY_SOCIAL_NETWORK_PAGE } from './social-networks';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -25,14 +25,14 @@ export class SocialNetworkService {
   createSocialNetwork(socialNetwork : SocialNetwork, token : string) : Observable<SocialNetwork> {
     return this.http.post<SocialNetwork>(this.apiUrl, socialNetwork, this.getHttpOptions(token))
       .pipe(
-        catchError(this.handleError<SocialNetwork>('createSocialNetwork', undefined))
+        catchError(this.handleError<SocialNetwork>('createSocialNetwork'))
       );
   }
 
   deleteSocialNetwork(id : string, token : string) : Observable<SocialNetwork> {
     return this.http.delete<SocialNetwork>(this.apiUrl + '/' + id, this.getHttpOptions(token) )
       .pipe(
-        catchError(this.handleError<SocialNetwork>('deleteSocialNetwork', undefined))
+        catchError(this.handleError<SocialNetwork>('deleteSocialNetwork'))
       );
   }
 

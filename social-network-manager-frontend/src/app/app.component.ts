@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult, AuthenticatedResult } from 'angular-auth-oidc-client';
 import { Observable, EMPTY } from 'rxjs';
 
-import { environment } from './../environments/environment';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
