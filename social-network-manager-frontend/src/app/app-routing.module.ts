@@ -12,12 +12,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard] },
   { path: 'social-network-list', component: SocialNetworkListComponent, canActivate: [SecurityGuard] },
   { path: 'forbidden', component: ForbiddenComponent, canActivate: [SecurityGuard] },
   { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: '',   redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 
