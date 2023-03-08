@@ -25,6 +25,6 @@ docker login -u alejandrotrilla
 ```
 . scripts/build-social-network-manager-backend.sh 1.0.1-SNAPSHOT
 . scripts/upgrade-social-network-manager-backend-and-deploy-to-kubernetes.sh 1.0.0-SNAPSHOT 1.0.1-SNAPSHOT 
-. scripts/build-social-network-manager-frontend.sh 1.0.6-SNAPSHOT
-. scripts/upgrade-social-network-manager-frontend-and-deploy-to-kubernetes.sh 1.0.5-SNAPSHOT 1.0.6-SNAPSHOT 
+. scripts/build-social-network-manager-frontend.sh 1.0.1-SNAPSHOT
+. scripts/upgrade-social-network-manager-frontend-and-deploy-to-kubernetes.sh 1.0.6-SNAPSHOT 1.0.1-SNAPSHOT 
 ```

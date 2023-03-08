@@ -7,6 +7,7 @@ import ar.com.trilla.social.core.domain.model.SocialNetwork;
 import ar.com.trilla.social.core.domain.model.SocialNetworkData;
 import ar.com.trilla.social.core.domain.model.SocialNetworkGateway;
 import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkDataRequest;
+import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkDataWithIdRequest;
 import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkIdRequest;
 import ar.com.trilla.social.core.domain.service.request.SocialNetworkPageableRequest;
 import ar.com.trilla.social.core.domain.service.response.SingleSocialNetworkResponse;
@@ -31,13 +32,15 @@ class SocialNetworkServiceTest {
     private static final UUID SOCIAL_NETWORK_ID = UUID.randomUUID();
     private static final String SOCIAL_NETWORK_NAME = "facebook";
     private static final String SOCIAL_NETWORK_DESCRIPTION = "Facebook Social Network";
+    private static final String OTHER_SOCIAL_NETWORK_NAME = "Linkedin";
+    private static final String OTHER_SOCIAL_NETWORK_DESCRIPTION = "Linkedin Social Network";
     private static final UUID NON_EXISTENT_SOCIAL_NETWORK_ID = UUID.randomUUID();
     private static final long PAGE_INDEX = 0;
     private static final long PAGE_SIZE = 10;
     private static final long SOCIAL_NETWORK_ITEMS_COUNT = 100;
 
-    private SocialNetwork socialNetwork = new SocialNetwork(SOCIAL_NETWORK_ID, SOCIAL_NETWORK_NAME, SOCIAL_NETWORK_DESCRIPTION);
-    private Page<SocialNetwork> socialNetworkPage = createSocialNetworkPage(PAGE_SIZE, SOCIAL_NETWORK_ITEMS_COUNT);
+    private final SocialNetwork socialNetwork = new SocialNetwork(SOCIAL_NETWORK_ID, SOCIAL_NETWORK_NAME, SOCIAL_NETWORK_DESCRIPTION);
+    private final Page<SocialNetwork> socialNetworkPage = createSocialNetworkPage(PAGE_SIZE, SOCIAL_NETWORK_ITEMS_COUNT);
 
     @Mock
     private SocialNetworkGateway socialNetworkGateway;
@@ -47,11 +50,27 @@ class SocialNetworkServiceTest {
 
     @Test
     void given_valid_request_when_SocialNetwork_creation_is_requested_then_return_response_with_new_SocialNetwork_instance() {
-        SocialNetworkData validSocialNetworkData = new SocialNetworkData(SOCIAL_NETWORK_NAME, SOCIAL_NETWORK_DESCRIPTION);
+        SocialNetworkData validSocialNetworkData = new SocialNetworkData(OTHER_SOCIAL_NETWORK_NAME, OTHER_SOCIAL_NETWORK_DESCRIPTION);
         SingleSocialNetworkDataRequest validRequest = new SingleSocialNetworkDataRequest(validSocialNetworkData);
         doNothing().when(socialNetworkGateway).save(any(SocialNetwork.class));
 
         SingleSocialNetworkResponse response = target.create(validRequest);
+
+        verify(socialNetworkGateway, times(1)).save(any(SocialNetwork.class));
+        assertNotNull(response);
+        assertNotNull(response.socialNetwork());
+        assertEquals(OTHER_SOCIAL_NETWORK_NAME, response.socialNetwork().name());
+        assertEquals(OTHER_SOCIAL_NETWORK_DESCRIPTION, response.socialNetwork().description());
+    }
+
+    @Test
+    void given_valid_request_when_SocialNetwork_update_is_requested_then_return_response_with_updated_SocialNetwork_instance() {
+        SocialNetworkData validSocialNetworkData = new SocialNetworkData(SOCIAL_NETWORK_NAME, SOCIAL_NETWORK_DESCRIPTION);
+        SingleSocialNetworkDataWithIdRequest validRequest = new SingleSocialNetworkDataWithIdRequest(SOCIAL_NETWORK_ID, validSocialNetworkData);
+        when(socialNetworkGateway.findById(SOCIAL_NETWORK_ID)).thenReturn(socialNetwork);
+        doNothing().when(socialNetworkGateway).save(any(SocialNetwork.class));
+
+        SingleSocialNetworkResponse response = target.update(validRequest);
 
         verify(socialNetworkGateway, times(1)).save(any(SocialNetwork.class));
         assertNotNull(response);

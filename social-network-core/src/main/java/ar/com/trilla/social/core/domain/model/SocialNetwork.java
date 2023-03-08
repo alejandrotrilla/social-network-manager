@@ -15,4 +15,8 @@ public class SocialNetwork {
     public SocialNetwork(SocialNetworkData data) {
         this(UUID.randomUUID(), data.name(), data.description());
     }
+
+    public SocialNetwork update(SocialNetworkData data) {
+        return new SocialNetwork(id, data.name(), data.description());
+    }
 }

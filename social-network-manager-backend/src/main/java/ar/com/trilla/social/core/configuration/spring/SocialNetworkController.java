@@ -3,6 +3,7 @@ package ar.com.trilla.social.core.configuration.spring;
 import ar.com.trilla.social.core.domain.model.SocialNetworkData;
 import ar.com.trilla.social.core.domain.service.SocialNetworkService;
 import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkDataRequest;
+import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkDataWithIdRequest;
 import ar.com.trilla.social.core.domain.service.request.SingleSocialNetworkIdRequest;
 import ar.com.trilla.social.core.domain.service.request.SocialNetworkPageableRequest;
 import ar.com.trilla.social.core.domain.service.response.SingleSocialNetworkResponse;
@@ -25,6 +26,15 @@ public class SocialNetworkController {
         SocialNetworkData socialNetworkData = new SocialNetworkData(request.name(), request.description());
         SingleSocialNetworkDataRequest useCaseRequest = new SingleSocialNetworkDataRequest(socialNetworkData);
         SingleSocialNetworkResponse response = socialNetworkService.create(useCaseRequest);
+
+        return new SocialNetworkHttpResponse(response.socialNetwork());
+    }
+
+    @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public SocialNetworkHttpResponse update(@PathVariable UUID id, @RequestBody SocialNetworkDataHttpRequest request) {
+        SocialNetworkData socialNetworkData = new SocialNetworkData(request.name(), request.description());
+        SingleSocialNetworkDataWithIdRequest useCaseRequest = new SingleSocialNetworkDataWithIdRequest(id, socialNetworkData);
+        SingleSocialNetworkResponse response = socialNetworkService.update(useCaseRequest);
 
         return new SocialNetworkHttpResponse(response.socialNetwork());
     }
