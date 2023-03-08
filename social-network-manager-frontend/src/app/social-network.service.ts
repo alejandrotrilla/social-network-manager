@@ -29,6 +29,13 @@ export class SocialNetworkService {
       );
   }
 
+  updateSocialNetwork(socialNetwork : SocialNetwork, token : string) : Observable<SocialNetwork> {
+    return this.http.put<SocialNetwork>(this.apiUrl + '/' + socialNetwork.id, socialNetwork, this.getHttpOptions(token))
+      .pipe(
+        catchError(this.handleError<SocialNetwork>('createSocialNetwork'))
+      );
+  }
+
   deleteSocialNetwork(id : string, token : string) : Observable<SocialNetwork> {
     return this.http.delete<SocialNetwork>(this.apiUrl + '/' + id, this.getHttpOptions(token) )
       .pipe(

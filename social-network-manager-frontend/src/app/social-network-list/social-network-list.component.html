@@ -1,12 +1,6 @@
 <h2>Social Networks</h2>
 
-<div class="button-bar">
-  <button mat-icon-button (click)="onNewItem()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
-
-<table mat-table [dataSource]="socialNetworkItems" class="mat-elevation-z8" [ngStyle]="{ 'background-color': 'gray'}">
+<table mat-table [dataSource]="socialNetworkItems" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID</th>
     <td mat-cell *matCellDef="let element"> {{element.id}}</td>
@@ -28,6 +22,9 @@
       <button mat-icon-button (click)="onDelete(element)">
         <mat-icon>delete</mat-icon>
       </button>
+      <button mat-icon-button (click)="onSelectItem(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </td>
   </ng-container>
 
@@ -38,13 +35,16 @@
 
 
 <div class="navigation-bar">
+  <button mat-icon-button (click)="onNewItem()">
+    <mat-icon>add</mat-icon>
+  </button>
   <button mat-icon-button (click)="onFirstPage()">
     <mat-icon>first_page</mat-icon>
   </button>
   <button mat-icon-button (click)="onPreviousPage()">
     <mat-icon>navigate_before</mat-icon>
   </button>
-  <span>{{ pageIndex + 1 }} of {{ lastPageIndex + 1 }}</span>
+  <span>{{ pageIndex }} of {{ lastPageIndex }}</span>
   <button mat-icon-button (click)="onNextPage()">
     <mat-icon>navigate_next</mat-icon>
   </button>
@@ -52,13 +52,13 @@
     <mat-icon>last_page</mat-icon>
   </button>
 
-  <label for="pageSize">Page Size:</label>
-
-  <select id="pageSize" [(ngModel)]="pageSize" (change)="onChangePageSize()" type="number">
-    <option [ngValue]="5">5</option>
-    <option [ngValue]="10">10</option>
-    <option [ngValue]="15">15</option>
-  </select>
+  <mat-form-field appearance="fill" class="pageSizeSelector">
+    <mat-select [formControl]="pageSizeControl" name="pageSize" (selectionChange)="onChangePageSize()" type="number">
+      <mat-option value="5">5</mat-option>
+      <mat-option value="10">10</mat-option>
+      <mat-option value="15">15</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <button mat-icon-button (click)="onRefresh()">
     <mat-icon>refresh</mat-icon>
@@ -68,6 +68,7 @@
 <div *ngIf="selectedSocialNetwork" class="social-network-detail">
   <app-social-network
     [socialNetwork]="selectedSocialNetwork"
+    [editing]="editing"
     (newSocialNetworkEvent)="onSave($event)">
   </app-social-network>
 </div>

@@ -357,3 +357,49 @@ form {
 mat-form-field {
   width: 100%;
 }
+
+.mat-mdc-table {
+  background-color: #606060;
+}
+
+.mat-table {
+  background-color: #505050;
+}
+
+.mat-mdc-card.mdc-card {
+  background-color:#505050;
+}
+
+.mat-mdc-card {
+  padding: 10px;
+  background-color:#505050;
+}
+
+.mat-mdc-card-header {
+  background-color:#505050;
+}
+
+.mat-mdc-card-title {
+  color: #a0a0a0;
+}
+
+.mat-mdc-card-subtitle {
+  color: black;
+}
+
+.navigation-bar {
+  text-align: center;
+  font-size-adjust: 1.3;
+}
+
+.pageSizeSelector {
+  width: 5em;
+}
+
+mat-label {
+  color: blue;
+}
+
+mat-input {
+  background-color:#505050;
+}

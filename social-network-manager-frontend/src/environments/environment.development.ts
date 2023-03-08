@@ -24,7 +24,7 @@ export const environment = {
   authConfig: {
     authority: AUTH_BASE_URI,
     redirectUrl: APP_BASE_URI,
-    postLoginRoute: APP_BASE_URI,
+    postLoginRoute: APP_BASE_URI + '/home',
     postLogoutRedirectUri: APP_BASE_URI,
     triggerAuthorizationResultEvent: true,
     clientId: CLIENT_ID,

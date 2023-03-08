@@ -1,20 +1,18 @@
 <div *ngIf="socialNetwork">
   <h2> Social Network </h2>
 
-  <form class="form">
-    <mat-form-field>
+  <form class="form" [formGroup]="socialNetworkForm">
+    <mat-form-field *ngIf="editing">
       <mat-label>ID</mat-label>
-      <input matInput value="{{socialNetwork.id}}" name="id" [readonly]="true" [disabled]="true">
+      <input matInput formControlName="id">
     </mat-form-field>
-
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="socialNetwork.name" name="name">
+      <input matInput formControlName="name">
     </mat-form-field>
-
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea matInput [(ngModel)]="socialNetwork.description" name="description"></textarea>
+      <input matInput formControlName="description">
     </mat-form-field>
   </form>
 
