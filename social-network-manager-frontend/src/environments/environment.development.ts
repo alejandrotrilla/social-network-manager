@@ -23,7 +23,7 @@ export const environment = {
   apiUrl: '/social-network-manager-backend',
   authConfig: {
     authority: AUTH_BASE_URI,
-    redirectUrl: APP_BASE_URI,
+    redirectUrl: APP_BASE_URI + '/home',
     postLoginRoute: APP_BASE_URI + '/home',
     postLogoutRedirectUri: APP_BASE_URI,
     triggerAuthorizationResultEvent: true,

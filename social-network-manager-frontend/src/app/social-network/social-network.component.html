@@ -1,7 +1,7 @@
 <div *ngIf="socialNetwork">
   <h2> Social Network </h2>
 
-  <form class="form" [formGroup]="socialNetworkForm">
+  <form [formGroup]="socialNetworkForm">
     <mat-form-field *ngIf="editing">
       <mat-label>ID</mat-label>
       <input matInput formControlName="id">
@@ -16,13 +16,17 @@
     </mat-form-field>
   </form>
 
-  <div class="button-panel">
+  <mat-toolbar>
+    <span class="toolbar-spacer"></span>
+
     <button mat-icon-button (click)="onSave(socialNetwork)">
       <mat-icon>check</mat-icon>
     </button>
     <button mat-icon-button (click)="onCancel()">
       <mat-icon>cancel</mat-icon>
     </button>
-  </div>
+
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar>
 
 </div>
