@@ -1,5 +1,7 @@
-<a [routerLink]="['/social-network-list']"
-   routerLinkActive="active">
-  <button mat-menu-item>Social Networks</button>
-</a>
-
+<mat-list role="list">
+  <mat-list-item role="listitem">
+    <button mat-button color="Primary" (click)="onSocialNetworks()">
+      Social Networks
+    </button>
+  </mat-list-item>
+</mat-list>

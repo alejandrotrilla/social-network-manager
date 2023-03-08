@@ -1,36 +1,41 @@
 <h2>Profile information</h2>
 
-<div>
-  <b>Username: </b>
-  <span>{{userdata?.preferred_username}}</span>
-</div>
+<mat-form-field>
+  <mat-label>Username</mat-label>
+  <input matInput disabled value="{{userdata?.preferred_username}}">
+</mat-form-field>
 
-<div>
-  <b>Authentication ID: </b>
-  <span>{{userdata?.sub}}</span>
-</div>
+<mat-form-field>
+  <mat-label>Authentication ID</mat-label>
+  <input matInput disabled value="{{userdata?.sub}}">
+</mat-form-field>
 
-<div>
-  <b>Last name: </b>
-  <span>{{userdata?.family_name}}</span>
-</div>
+<mat-form-field>
+  <mat-label>Last name</mat-label>
+  <input matInput disabled value="{{userdata?.family_name}}">
+</mat-form-field>
 
-<div>
-  <b>First name: </b>
-  <span>{{userdata?.given_name}}</span>
-</div>
+<mat-form-field>
+  <mat-label>First name</mat-label>
+  <input matInput disabled value="{{userdata?.given_name}}">
+</mat-form-field>
 
-<div>
-  <b>Full name: </b>
-  <span>{{userdata?.name}}</span>
-</div>
 
-<div>
-  <b>EMail: </b>
-  <span>{{userdata?.email}}</span>
-</div>
+<mat-form-field>
+  <mat-label>Full name</mat-label>
+  <input matInput disabled value="{{userdata?.name}}">
+</mat-form-field>
 
-<div>
-  <b>Email verified: </b>
-  <span>{{userdata?.email_verified}}</span>
-</div>
+<mat-form-field *ngIf="userdata?.email_verified">
+  <mat-label>EMail</mat-label>
+  <input matInput disabled value="{{userdata?.email}}">
+
+  <mat-icon matSuffix>check</mat-icon>
+</mat-form-field>
+
+<mat-form-field *ngIf="!userdata?.email_verified">
+  <mat-label>EMail</mat-label>
+  <input matInput disabled value="{{userdata?.email}}">
+  <mat-icon matSuffix>error</mat-icon>
+  <mat-hint>Verify your EMail</mat-hint>
+</mat-form-field>

@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -62,6 +63,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     MatCardModule,
     MatSelectModule,
     MatInputModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
