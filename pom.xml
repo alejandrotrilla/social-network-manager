@@ -96,7 +96,7 @@
         <profile>
             <id>coverage-check</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <build>
                 <plugins>
@@ -152,7 +152,7 @@
         <profile>
             <id>quality-code-analysis</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>

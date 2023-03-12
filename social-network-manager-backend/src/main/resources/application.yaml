@@ -1,0 +1,30 @@
+logging:
+  level:
+    root: INFO
+
+server:
+  servlet:
+    context-path: /social-network-manager-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    env:
+      show-values: ALWAYS
+
+spring:
+  jackson:
+    - serialization.FAIL_ON_EMPTY_BEANS: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${jwtIssuerUri}
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: ${server.servlet.context-path}/health
+        healthCheckInterval: 10s
